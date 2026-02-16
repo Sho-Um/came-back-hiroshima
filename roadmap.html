@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>帰還のロードマップ — 北海道から広島へ</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Noto+Serif+JP:wght@400;700&display=swap');
+
+  :root {
+    --snow: #f8f9fc;
+    --ice: #e8edf6;
+    --mist: #d1dae8;
+    --slate: #64748b;
+    --deep: #1e293b;
+    --accent-blue: #3b82f6;
+    --accent-teal: #14b8a6;
+    --accent-rose: #f43f5e;
+    --accent-amber: #f59e0b;
+    --accent-violet: #8b5cf6;
+    --glass: rgba(255,255,255,0.72);
+    --glass-border: rgba(255,255,255,0.3);
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+    --shadow-md: 0 4px 20px rgba(0,0,0,0.08);
+    --shadow-lg: 0 12px 40px rgba(0,0,0,0.1);
+    --radius: 16px;
+    --radius-sm: 10px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 400;
+    color: var(--deep);
+    background: var(--snow);
+    line-height: 1.9;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── Hero ─── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 30%, #2d6a8e 60%, #4a9ebd 100%);
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 600px 400px at 20% 80%, rgba(56,189,248,0.15), transparent),
+      radial-gradient(ellipse 500px 500px at 80% 20%, rgba(139,92,246,0.12), transparent),
+      radial-gradient(ellipse 300px 300px at 50% 50%, rgba(255,255,255,0.04), transparent);
+  }
+
+  .snowflakes {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .snowflake {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: rgba(255,255,255,0.6);
+    border-radius: 50%;
+    animation: fall linear infinite;
+  }
+
+  @keyframes fall {
+    0% { transform: translateY(-10vh) translateX(0); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(110vh) translateX(40px); opacity: 0; }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 2rem;
+    max-width: 800px;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    padding: 6px 20px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 100px;
+    color: rgba(255,255,255,0.8);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    backdrop-filter: blur(10px);
+  }
+
+  .hero h1 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.02em;
+  }
+
+  .hero h1 .highlight {
+    background: linear-gradient(135deg, #38bdf8, #a78bfa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    color: rgba(255,255,255,0.65);
+    font-size: 15px;
+    line-height: 1.9;
+    max-width: 600px;
+    margin: 0 auto 2.5rem;
+    font-weight: 300;
+  }
+
+  .hero-phases {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .hero-phase {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 100px;
+    backdrop-filter: blur(10px);
+    color: rgba(255,255,255,0.85);
+    font-size: 13px;
+    font-weight: 400;
+    transition: all 0.3s;
+  }
+
+  .hero-phase:hover {
+    background: rgba(255,255,255,0.14);
+    transform: translateY(-2px);
+  }
+
+  .hero-phase .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255,255,255,0.4);
+    font-size: 12px;
+    letter-spacing: 2px;
+    animation: bounce 2s infinite;
+  }
+
+  .scroll-hint::after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 30px;
+    background: rgba(255,255,255,0.2);
+    margin: 8px auto 0;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(6px); }
+  }
+
+  /* ─── Navigation ─── */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(248,249,252,0.85);
+    backdrop-filter: blur(20px) saturate(1.8);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    padding: 0 2rem;
+  }
+
+  .nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 14px 0;
+  }
+
+  .nav-inner::-webkit-scrollbar { display: none; }
+
+  .nav-logo {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 14px;
+    font-weight: 700;
+    white-space: nowrap;
+    color: var(--deep);
+    flex-shrink: 0;
+  }
+
+  .nav a {
+    text-decoration: none;
+    color: var(--slate);
+    font-size: 12.5px;
+    font-weight: 500;
+    white-space: nowrap;
+    padding: 4px 0;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+  }
+
+  .nav a:hover {
+    color: var(--deep);
+    border-bottom-color: var(--accent-blue);
+  }
+
+  /* ─── Main Layout ─── */
+  .main {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem 6rem;
+  }
+
+  /* ─── Intro Section ─── */
+  .intro-block {
+    background: linear-gradient(135deg, #f0f4ff, #faf5ff);
+    border-radius: var(--radius);
+    padding: 2.5rem;
+    margin-bottom: 4rem;
+    border: 1px solid rgba(139,92,246,0.1);
+  }
+
+  .intro-block p {
+    color: #475569;
+    font-size: 14.5px;
+    line-height: 2;
+  }
+
+  .intro-block p + p { margin-top: 1rem; }
+
+  /* ─── Phase Sections ─── */
+  .phase-section {
+    margin-bottom: 5rem;
+  }
+
+  .phase-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--ice);
+  }
+
+  .phase-number {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 20px;
+    color: #fff;
+    flex-shrink: 0;
+    box-shadow: var(--shadow-md);
+  }
+
+  .phase-header-text h2 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--deep);
+    line-height: 1.5;
+  }
+
+  .phase-header-text .phase-period {
+    font-size: 12.5px;
+    color: var(--slate);
+    font-weight: 400;
+    margin-top: 2px;
+  }
+
+  .phase-1 .phase-number { background: linear-gradient(135deg, #3b82f6, #06b6d4); }
+  .phase-2 .phase-number { background: linear-gradient(135deg, #8b5cf6, #ec4899); }
+  .phase-3 .phase-number { background: linear-gradient(135deg, #14b8a6, #22c55e); }
+  .phase-4 .phase-number { background: linear-gradient(135deg, #f59e0b, #ef4444); }
+
+  /* ─── Sub Sections ─── */
+  .sub-section {
+    margin-bottom: 3rem;
+  }
+
+  .sub-section h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--deep);
+    margin-bottom: 1rem;
+    padding-left: 14px;
+    border-left: 3px solid var(--accent-blue);
+    line-height: 1.6;
+  }
+
+  .sub-section p {
+    color: #475569;
+    font-size: 14.5px;
+    line-height: 2;
+    margin-bottom: 1rem;
+  }
+
+  /* ─── Feature Cards ─── */
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin: 1.5rem 0;
+  }
+
+  .feature-card {
+    background: #fff;
+    border: 1px solid var(--ice);
+    border-radius: var(--radius-sm);
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    border-color: transparent;
+  }
+
+  .feature-card .card-icon {
+    font-size: 28px;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .feature-card h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--deep);
+    margin-bottom: 6px;
+  }
+
+  .feature-card .card-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .feature-card p {
+    font-size: 13px;
+    color: var(--slate);
+    line-height: 1.8;
+    margin: 0;
+  }
+
+  .card-blue::before { background: linear-gradient(90deg, #3b82f6, #06b6d4); }
+  .card-blue .card-label { color: #3b82f6; }
+
+  .card-violet::before { background: linear-gradient(90deg, #8b5cf6, #ec4899); }
+  .card-violet .card-label { color: #8b5cf6; }
+
+  .card-teal::before { background: linear-gradient(90deg, #14b8a6, #22c55e); }
+  .card-teal .card-label { color: #14b8a6; }
+
+  .card-amber::before { background: linear-gradient(90deg, #f59e0b, #ef4444); }
+  .card-amber .card-label { color: #f59e0b; }
+
+  .card-rose::before { background: linear-gradient(90deg, #f43f5e, #f97316); }
+  .card-rose .card-label { color: #f43f5e; }
+
+  /* ─── Data Table ─── */
+  .table-wrapper {
+    margin: 2rem 0;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--ice);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .table-title {
+    background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+    padding: 1rem 1.5rem;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--deep);
+    border-bottom: 1px solid var(--ice);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .table-scroll {
+    overflow-x: auto;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+
+  thead {
+    background: #f8fafc;
+  }
+
+  th {
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+    color: var(--slate);
+    font-size: 11.5px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    border-bottom: 2px solid var(--ice);
+    white-space: nowrap;
+  }
+
+  td {
+    padding: 14px 16px;
+    border-bottom: 1px solid #f1f5f9;
+    color: #475569;
+    vertical-align: top;
+    line-height: 1.7;
+  }
+
+  tr:last-child td { border-bottom: none; }
+
+  tr:hover td { background: #fafbfe; }
+
+  td:first-child {
+    font-weight: 600;
+    color: var(--deep);
+    min-width: 160px;
+  }
+
+  /* ─── Event Cards ─── */
+  .event-category {
+    margin-bottom: 2.5rem;
+  }
+
+  .event-category-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 1rem;
+    padding: 10px 16px;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .cat-food { background: #fef3c7; color: #92400e; }
+  .cat-growth { background: #dbeafe; color: #1e40af; }
+  .cat-art { background: #fce7f3; color: #9d174d; }
+
+  .event-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .event-item {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 16px;
+    padding: 16px;
+    background: #fff;
+    border: 1px solid var(--ice);
+    border-radius: var(--radius-sm);
+    transition: all 0.2s;
+  }
+
+  .event-item:hover {
+    border-color: #c7d2fe;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .event-date {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent-blue);
+    line-height: 1.6;
+  }
+
+  .event-info h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--deep);
+    margin-bottom: 4px;
+    line-height: 1.5;
+  }
+
+  .event-info .event-place {
+    font-size: 12px;
+    color: var(--slate);
+    margin-bottom: 4px;
+  }
+
+  .event-info .event-desc {
+    font-size: 12.5px;
+    color: #64748b;
+    line-height: 1.7;
+  }
+
+  .event-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-right: 4px;
+    margin-top: 6px;
+  }
+
+  .tag-gourmet { background: #fef9c3; color: #854d0e; }
+  .tag-culture { background: #ede9fe; color: #5b21b6; }
+  .tag-learning { background: #dbeafe; color: #1e40af; }
+  .tag-art { background: #fce7f3; color: #9d174d; }
+  .tag-nature { background: #d1fae5; color: #065f46; }
+  .tag-intl { background: #e0e7ff; color: #3730a3; }
+  .tag-free { background: #f0fdf4; color: #166534; }
+
+  /* ─── Callout Box ─── */
+  .callout {
+    padding: 1.5rem 1.5rem 1.5rem 1.2rem;
+    border-radius: var(--radius-sm);
+    margin: 1.5rem 0;
+    border-left: 4px solid;
+    font-size: 13.5px;
+    line-height: 1.9;
+    color: #475569;
+  }
+
+  .callout-blue {
+    background: #eff6ff;
+    border-color: #3b82f6;
+  }
+
+  .callout-teal {
+    background: #f0fdfa;
+    border-color: #14b8a6;
+  }
+
+  .callout-amber {
+    background: #fffbeb;
+    border-color: #f59e0b;
+  }
+
+  /* ─── Recipe Card ─── */
+  .recipe-card {
+    background: linear-gradient(135deg, #fefce8, #fff7ed);
+    border: 1px solid #fde68a;
+    border-radius: var(--radius);
+    padding: 2rem;
+    margin: 2rem 0;
+  }
+
+  .recipe-card h4 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #78350f;
+    margin-bottom: 1rem;
+  }
+
+  .recipe-stats {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 1.2rem;
+  }
+
+  .recipe-stat {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: #92400e;
+    background: rgba(255,255,255,0.6);
+    padding: 6px 12px;
+    border-radius: 100px;
+  }
+
+  .recipe-card p {
+    font-size: 14px;
+    color: #78350f;
+    line-height: 1.9;
+  }
+
+  /* ─── Conclusion ─── */
+  .conclusion {
+    background: linear-gradient(135deg, #0f172a, #1e3a5f);
+    border-radius: var(--radius);
+    padding: 3rem 2.5rem;
+    margin-top: 4rem;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .conclusion::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 400px 300px at 80% 20%, rgba(139,92,246,0.15), transparent);
+  }
+
+  .conclusion h2 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+
+  .conclusion p {
+    color: rgba(255,255,255,0.75);
+    font-size: 14.5px;
+    line-height: 2;
+    position: relative;
+    margin-bottom: 1rem;
+  }
+
+  .conclusion-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin: 2rem 0;
+    position: relative;
+  }
+
+  .conclusion-step {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius-sm);
+    padding: 1.2rem;
+    backdrop-filter: blur(10px);
+  }
+
+  .conclusion-step .step-num {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 6px;
+  }
+
+  .conclusion-step h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+
+  .conclusion-step p {
+    font-size: 12.5px;
+    color: rgba(255,255,255,0.55);
+    margin: 0;
+  }
+
+  /* ─── References ─── */
+  .references {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--ice);
+  }
+
+  .references h3 {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--slate);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .ref-list {
+    columns: 1;
+    font-size: 11.5px;
+    color: var(--slate);
+    line-height: 2;
+  }
+
+  .ref-list a {
+    color: var(--accent-blue);
+    text-decoration: none;
+    word-break: break-all;
+  }
+
+  .ref-list a:hover { text-decoration: underline; }
+
+  /* ─── Footer ─── */
+  .footer {
+    text-align: center;
+    padding: 3rem 1rem;
+    font-size: 12px;
+    color: var(--slate);
+    background: var(--ice);
+  }
+
+  /* ─── Responsive ─── */
+  @media (max-width: 640px) {
+    .main { padding: 2.5rem 1rem 4rem; }
+    .phase-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .feature-grid { grid-template-columns: 1fr; }
+    .event-item { grid-template-columns: 1fr; gap: 4px; }
+    .hero-phases { flex-direction: column; align-items: center; }
+    .intro-block { padding: 1.5rem; }
+    .conclusion { padding: 2rem 1.5rem; }
+    .conclusion-steps { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="snowflakes">
+    <div class="snowflake" style="left:10%;animation-duration:8s;animation-delay:0s;width:3px;height:3px"></div>
+    <div class="snowflake" style="left:25%;animation-duration:12s;animation-delay:2s"></div>
+    <div class="snowflake" style="left:40%;animation-duration:10s;animation-delay:4s;width:5px;height:5px"></div>
+    <div class="snowflake" style="left:55%;animation-duration:14s;animation-delay:1s;width:3px;height:3px"></div>
+    <div class="snowflake" style="left:70%;animation-duration:9s;animation-delay:3s"></div>
+    <div class="snowflake" style="left:85%;animation-duration:11s;animation-delay:5s;width:6px;height:6px;opacity:0.4"></div>
+    <div class="snowflake" style="left:15%;animation-duration:13s;animation-delay:6s;width:3px;height:3px"></div>
+    <div class="snowflake" style="left:60%;animation-duration:10s;animation-delay:7s"></div>
+    <div class="snowflake" style="left:92%;animation-duration:15s;animation-delay:0.5s;width:5px;height:5px;opacity:0.3"></div>
+    <div class="snowflake" style="left:35%;animation-duration:11s;animation-delay:8s;width:3px;height:3px"></div>
+  </div>
+  <div class="hero-content">
+    <span class="hero-badge">Wellness Roadmap 2026</span>
+    <h1>北海道から<span class="highlight">広島</span>へ<br>帰還のロードマップ</h1>
+    <p class="hero-sub">環境移行に伴う心理的・身体的再統合と、持続的な都市型ウェルビーイングを実現するための実践ガイド</p>
+    <div class="hero-phases">
+      <div class="hero-phase"><span class="dot" style="background:#38bdf8"></span>生理学的リカバリー</div>
+      <div class="hero-phase"><span class="dot" style="background:#c084fc"></span>認知的統合</div>
+      <div class="hero-phase"><span class="dot" style="background:#34d399"></span>サードプレイス開拓</div>
+      <div class="hero-phase"><span class="dot" style="background:#fbbf24"></span>コミュニティ参加</div>
+    </div>
+  </div>
+  <div class="scroll-hint">SCROLL</div>
+</section>
+
+<!-- ═══ NAV ═══ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <span class="nav-logo">🗺️ Roadmap</span>
+    <a href="#intro">導入</a>
+    <a href="#phase1">Phase 1 — リカバリー</a>
+    <a href="#phase2">Phase 2 — 認知的統合</a>
+    <a href="#phase3">Phase 3 — サードプレイス</a>
+    <a href="#phase4">Phase 4 — コミュニティ</a>
+    <a href="#conclusion">結論</a>
+  </div>
+</nav>
+
+<!-- ═══ MAIN ═══ -->
+<main class="main">
+
+  <!-- ─── INTRO ─── -->
+  <section id="intro" class="intro-block">
+    <p>北海道での2泊3日という非日常的な滞在は、強烈な環境刺激を通じて感覚器官を活性化させ、日常のストレスからの劇的な解放をもたらす。しかし、亜寒帯性気候のフィールドから瀬戸内海式気候の広島へと帰還するプロセスは、自律神経系および認知機能に対する急激な<strong>環境移行（Environmental Transition）</strong>を強いるものである。</p>
+    <p>本レポートは、帰還直後のコントラストをネガティブな疲労として処理するのではなく、広島の地域資源や生活の質を根本から見直す<strong>「触媒」</strong>として戦略的に活用するための包括的ロードマップを提示する。環境心理学、温浴生理学、地域社会学の知見を統合し、旅行の余韻を推進力に変え、広島での日常をより豊かなものへと昇華させる。</p>
+  </section>
+
+  <!-- ═══ PHASE 1 ═══ -->
+  <section id="phase1" class="phase-section phase-1">
+    <div class="phase-header">
+      <div class="phase-number">1</div>
+      <div class="phase-header-text">
+        <h2>生理学的リカバリーと自律神経系のチューニング</h2>
+        <span class="phase-period">帰着後 1〜3日</span>
+      </div>
+    </div>
+
+    <p style="color:#475569;font-size:14.5px;line-height:2;margin-bottom:2rem">長距離の航空移動、気圧変動、そして北海道の寒冷な外気と強力な屋内暖房との反復的な接触は、体温調節機能を司る自律神経系に多大な負荷をかけている。帰着後数日間は<strong>「積極的休養（アクティブリカバリー）」</strong>の期間として位置づけ、科学的アプローチにより心身のチューニングを行う。</p>
+
+    <!-- 2.1 -->
+    <div class="sub-section">
+      <h3>高濃度ミネラルと放射能泉を通じた深部体温の回復</h3>
+
+      <div class="feature-grid">
+        <div class="feature-card card-blue">
+          <span class="card-icon">♨️</span>
+          <span class="card-label">塩屋天然温泉 ほの湯楽々園</span>
+          <h4>広島市佐伯区楽々園</h4>
+          <p>地下1,100mの花崗岩層から毎分392Lで湧出するナトリウム・カルシウム塩化物強塩泉。ミネラル成分を1kgあたり25gと極めて高濃度に含む。「熱の湯」と称され、強力な保温・保湿効果を発揮。源泉風呂、炭酸泉、シルクインなど計14種の浴槽を完備。</p>
+        </div>
+        <div class="feature-card card-teal">
+          <span class="card-icon">🌿</span>
+          <span class="card-label">温泉Spa 獅温（しおん）</span>
+          <h4>東広島市河内町</h4>
+          <p>自家源泉100%のラジウム温泉。ラドンガスによる「ホルミシス効果」で、細胞・血管に適度な刺激を与え、抗酸化酵素を促進。緑豊かな露天風呂、ジェットバス、薬湯を備え、DHCアメニティやシャンプーバーも完備。</p>
+        </div>
+      </div>
+
+      <div class="table-wrapper">
+        <div class="table-title">📊 広島エリアの主要リカバリー温浴施設とその生理学的特性</div>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>施設名・所在地</th>
+                <th>主要泉質</th>
+                <th>期待される効果</th>
+                <th>特筆すべき設備</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>塩屋天然温泉<br>ほの湯楽々園<br><small style="color:var(--slate)">広島市佐伯区</small></td>
+                <td>ナトリウム・カルシウム塩化物強塩泉（高張性・中性・低温泉）</td>
+                <td>強力な保温・保湿効果。末梢循環障害、冷え性、関節痛、疲労回復</td>
+                <td>加水なし源泉風呂、高濃度炭酸泉、シルクイン、チムジルバン</td>
+              </tr>
+              <tr>
+                <td>温泉Spa 獅温<br><small style="color:var(--slate)">東広島市河内町</small></td>
+                <td>ナトリウム・塩化物炭酸水素塩泉・ラジウム泉（自家源泉100%）</td>
+                <td>ホルミシス効果による免疫力・自然治癒力の向上。神経痛、アトピー性皮膚炎</td>
+                <td>露天風呂、薬湯、ジェットバス、シャンプーバー、デトックスウォーター</td>
+              </tr>
+              <tr>
+                <td>湯来温泉<br><small style="color:var(--slate)">広島市佐伯区</small></td>
+                <td>単純弱放射能泉</td>
+                <td>疲労回復、神経痛、リウマチの緩和</td>
+                <td>豊かな自然環境に囲まれた伝統的な湯治効果</td>
+              </tr>
+              <tr>
+                <td>宮浜温泉<br><small style="color:var(--slate)">廿日市市</small></td>
+                <td>単純弱放射能低温泉</td>
+                <td>神経痛、筋肉痛、関節痛の緩和</td>
+                <td>瀬戸内海を望む景観による視覚的リラクゼーション</td>
+              </tr>
+              <tr>
+                <td>鞆の浦温泉<br><small style="color:var(--slate)">福山市</small></td>
+                <td>単純弱放射能冷鉱泉</td>
+                <td>冷え性、疲労回復、健康増進</td>
+                <td>歴史的港町の風情と潮風による転地効果</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2.2 -->
+    <div class="sub-section">
+      <h3>サウナと岩盤浴による交感神経・副交感神経のコントラスト制御</h3>
+      <p>自律神経の乱れをリセットするためには、温冷交代浴による意図的な交感神経と副交感神経の刺激が効果的である。ほの湯楽々園の黄土高温サウナで深部発汗を促し、約17℃の冷水風呂との急激なコントラストにより「ととのう」深いリラクゼーション状態を創出する。</p>
+
+      <div class="callout callout-blue">
+        <strong>🧊 チムジルバン汗蒸洞</strong> — 岩塩、トルマリン、ゲルマニウム、ラジストーンなど多様な鉱石を用いたヒーリングルームを展開。特に「熱風楽房」では、霧昇白龍（14:00/16:30）と烈火龍-灼熱の咆哮-（11:30/19:00/21:30）のロウリュウアトラクションが五感への強烈な刺激を提供。涼風楽房での冷却プロセスを経て、代謝機能の改善とアレルギー抵抗性の向上をもたらす。約5,000冊のコミックを備えた休憩スペースで半日をかけた心身のリセットが可能。
+      </div>
+    </div>
+
+    <!-- 2.3 -->
+    <div class="sub-section">
+      <h3>エステティックと物理的トリートメントによる筋膜・皮膚組織の再生</h3>
+
+      <div class="feature-grid">
+        <div class="feature-card card-rose">
+          <span class="card-icon">💆</span>
+          <span class="card-label">ボディ・フットケア</span>
+          <h4>癒し處 楽（ほの湯内）</h4>
+          <p>ボディケア 20分2,500円〜 / フットケア（72反射区） 20分2,500円〜 / タイ古式セラピー 60分7,800円〜</p>
+        </div>
+        <div class="feature-card card-amber">
+          <span class="card-icon">✨</span>
+          <span class="card-label">デトックス・美容</span>
+          <h4>美体アロマ</h4>
+          <p>神熱デトックスオイル 40分8,500円〜 / 超音波フェイス創顔 45分9,000円〜 / 3D小顔セラピー 60分11,000円〜</p>
+        </div>
+        <div class="feature-card card-violet">
+          <span class="card-icon">🧴</span>
+          <span class="card-label">スキンケア</span>
+          <h4>スパあかすり＋ホームケア</h4>
+          <p>スパあかすり 30分4,500円〜で角質除去・ターンオーバー促進。酒粕Q10ローション等で温泉の美肌効果を自宅でも継続。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PHASE 2 ═══ -->
+  <section id="phase2" class="phase-section phase-2">
+    <div class="phase-header">
+      <div class="phase-number">2</div>
+      <div class="phase-header-text">
+        <h2>認知的統合と生活空間の再構築</h2>
+        <span class="phase-period">帰着後 1週間</span>
+      </div>
+    </div>
+
+    <p style="color:#475569;font-size:14.5px;line-height:2;margin-bottom:2rem">北海道での非日常的な記憶を、広島での日常空間へシームレスに統合する<strong>「認知的統合（Cognitive Integration）」</strong>のフェーズ。旅の思い出を「ポジティブなアンカー」として物理的に配置し、日常ストレスへの心理的緩衝材として機能させる。</p>
+
+    <!-- 3.1 -->
+    <div class="sub-section">
+      <h3>デジタルフォトフレームによる動的環境デザイン</h3>
+      <p>北海道で撮影した雪原の風景、海鮮料理、歴史的建造物などの写真を、生活空間のデジタルディスプレイで動的なインテリアへと変換する。</p>
+
+      <div class="feature-grid">
+        <div class="feature-card card-violet">
+          <span class="card-icon">🖼️</span>
+          <span class="card-label">推奨デバイス①</span>
+          <h4>浅沼商会 DCF-010V</h4>
+          <p>10.1インチ高解像度IPSタッチスクリーン。32GB大容量メモリ搭載。自動回転機能、Wi-Fi経由でスマホから写真転送。日々のキュレーション反映が容易。</p>
+        </div>
+        <div class="feature-card card-blue">
+          <span class="card-icon">📺</span>
+          <span class="card-label">推奨デバイス②</span>
+          <h4>KEIAN KDP10-H01-WH</h4>
+          <p>16パターンのスライドショー機能。柔軟な画像切替間隔設定。動画・音楽再生にも対応する多彩なファイル形式サポート。</p>
+        </div>
+      </div>
+
+      <div class="callout callout-teal">
+        リビングのサイドテーブルやワークスペースのデスク上に設置し、毎日異なる風景が表示されるように設定することで、居住空間に「借景」として北海道の広大なパースペクティブを取り込み、視覚的リフレッシュと旅の余韻を持続させる。
+      </div>
+    </div>
+
+    <!-- 3.2 -->
+    <div class="sub-section">
+      <h3>パッケージのアップサイクルによる収納美学の体現</h3>
+      <p>旅行先で購入した土産物の魅力的なパッケージを、機能的な収納ツールとしてアップサイクル（創造的再利用）する。持続可能なライフスタイルの実践であると同時に、愛着のある空間づくりに直接貢献する。</p>
+
+      <div class="feature-grid">
+        <div class="feature-card card-amber">
+          <span class="card-icon">💄</span>
+          <h4>メイク・スキンケアボックス</h4>
+          <p>こまごまとしたメイク道具やお試しサイズのスキンケアを整理。旅行・外出時のピックアップステーションとしても機能。</p>
+        </div>
+        <div class="feature-card card-teal">
+          <span class="card-icon">🍪</span>
+          <h4>お菓子の保管容器</h4>
+          <p>開封した個包装お菓子の保管や、手作りクッキーの保存容器として。密閉性と堅牢さが魅力。</p>
+        </div>
+        <div class="feature-card card-rose">
+          <span class="card-icon">📝</span>
+          <h4>紙もののアーカイブ</h4>
+          <p>文房具、美術館の半券、チケット、写真、手紙、推し活グッズなどを収集。マスキングテープやシールでデコレーションも。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3.3 -->
+    <div class="sub-section">
+      <h3>アレンジレシピを通じた味覚の追体験と文化的融合</h3>
+      <p>人間の記憶は味覚や嗅覚と強く結びついている（プルースト効果）。北海道の特産品を広島の食卓に融合させることは、旅の経験を物理的に消化・吸収する象徴的プロセスである。</p>
+
+      <div class="recipe-card">
+        <h4>🐟 秋鮭とホクホクじゃがいものバターしょうゆ炒め</h4>
+        <div class="recipe-stats">
+          <span class="recipe-stat">⏱ 約30分</span>
+          <span class="recipe-stat">🔥 286 kcal</span>
+          <span class="recipe-stat">🧂 塩分 1.5g</span>
+          <span class="recipe-stat">👥 2人分</span>
+        </div>
+        <p>生サケ（約200g）を一口大に切り、塩こしょうで下味をつけ小麦粉を薄くまぶす。ホクホクに茹でたじゃがいも（約300g）とともにフライパンで炒め合わせ、北海道特産の<strong>「鮭節だし醤油」（大さじ2）</strong>と<strong>バター（約10〜30g）</strong>で仕上げる。鮭節の独特の燻香とイノシン酸の旨味が、バターの芳醇な脂肪分と結びつき、リッチながら郷愁を誘う風味が完成。青のりやねぎで彩りと香りのアクセントを。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PHASE 3 ═══ -->
+  <section id="phase3" class="phase-section phase-3">
+    <div class="phase-header">
+      <div class="phase-number">3</div>
+      <div class="phase-header-text">
+        <h2>サードプレイスの開拓と都市空間の再解釈</h2>
+        <span class="phase-period">帰着後 1〜2週間以降</span>
+      </div>
+    </div>
+
+    <p style="color:#475569;font-size:14.5px;line-height:2;margin-bottom:2rem">旅行を通じて活性化された好奇心と「観光客のまなざし（Tourist Gaze）」を持ち続け、見慣れた日常の風景に新鮮な驚きを発見する。自宅と職場以外の心地よい<strong>「サードプレイス」</strong>の開拓は、都市生活における精神的安定と持続的なウェルビーイングに不可欠である。</p>
+
+    <!-- 4.1 -->
+    <div class="sub-section">
+      <h3>ウォーターフロントと市街地の隠れ家カフェ探索</h3>
+      <p>水辺の景観（Blue Space）は心理的な回復力を高める効果が環境心理学的に実証されている。広島市内およびその近郊には、静寂と独自の美意識を提供する隠れ家的なカフェが豊富に存在する。</p>
+
+      <div class="feature-grid">
+        <div class="feature-card card-blue">
+          <span class="card-icon">⚓</span>
+          <span class="card-label">宇品エリア</span>
+          <h4>港町のリラックス空間</h4>
+          <p>喫茶かもめモカ、アリンコベーカリー、ニコカレー、ウケるアトリエカフェなど。潮風を感じながらゆったりとした時間を。</p>
+        </div>
+        <div class="feature-card card-violet">
+          <span class="card-icon">☕</span>
+          <span class="card-label">市内の穴場</span>
+          <h4>隠れ家カフェ</h4>
+          <p>カフェドヨシユキ、カフェドパブロ、aetなど。喧騒から切り離された空間で上質なコーヒーと一人の時間を。</p>
+        </div>
+      </div>
+
+      <div class="feature-grid">
+        <div class="feature-card card-teal">
+          <span class="card-icon">🌊</span>
+          <span class="card-label">seaside cafe ALPHA</span>
+          <h4>倉橋町 — 海を見渡す絶景テラス</h4>
+          <p>テラス席から広大な海を一望。地元の新鮮な素材を使ったランチやスイーツを提供。</p>
+        </div>
+        <div class="feature-card card-amber">
+          <span class="card-icon">🐟</span>
+          <span class="card-label">海街CAFE おきむら</span>
+          <h4>江田島 沖美町 — 波の音とともに</h4>
+          <p>波の音を聞きながら地元の海の幸を活かしたメニュー。友人との対話に最適。</p>
+        </div>
+        <div class="feature-card card-rose">
+          <span class="card-icon">🍍</span>
+          <span class="card-label">ALOHA CAFE Pineapple</span>
+          <h4>坂町 — ハワイアンな海風</h4>
+          <p>ベイサイドビーチ坂店。ハワイアンな雰囲気で海風を感じながらアサイーボウルを。ドライブの休息にも最適。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4.2 -->
+    <div class="sub-section">
+      <h3>縮景園の季節の移ろいと三滝寺でのマインドフルネス</h3>
+
+      <div class="feature-grid" style="grid-template-columns:1fr">
+        <div class="feature-card card-teal" style="display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:start">
+          <div>
+            <span class="card-icon" style="font-size:40px">🌸</span>
+          </div>
+          <div>
+            <span class="card-label">Green Space</span>
+            <h4 style="font-size:16px">縮景園 — 広島市上幟町</h4>
+            <p style="margin-top:6px">四季折々の植物が計算配置された歴史的日本庭園。一般350円（大学生150円、小中高生無料）。</p>
+            <p style="margin-top:8px;font-size:12.5px"><strong>1〜3月：</strong>ウメ、ロウバイ、ツバキ、サザンカ → <strong>3〜4月：</strong>モモ、サクラ → <strong>4〜5月：</strong>フジ、ボタン、ツツジ → <strong>6〜9月：</strong>アジサイ、スイレン → <strong>9〜12月：</strong>スイフヨウ、紅葉</p>
+            <p style="margin-top:8px;font-size:12.5px"><strong>📅 注目：</strong>2026年2月15日（土）「梅見茶会」開催。歴史的庭園を借景とした茶道体験。年間を通じて観桜茶会、茶摘みまつり、観月茶会、もみじ茶会なども開催。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout callout-teal">
+        <strong>🏔️ 三滝寺</strong>（広島市西区三滝山）— JR三滝駅から徒歩約20分。都市部からのアクセスの良さにもかかわらず、深い木々に覆われ滝の音が響く幽玄な空間。歩行瞑想（マインドフルネス）により、情報過多な日常の認知疲労を回復させる極めて有効な手段。
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PHASE 4 ═══ -->
+  <section id="phase4" class="phase-section phase-4">
+    <div class="phase-header">
+      <div class="phase-number">4</div>
+      <div class="phase-header-text">
+        <h2>地域コミュニティへの参加と知的・文化的刺激</h2>
+        <span class="phase-period">帰着後 2週間〜継続</span>
+      </div>
+    </div>
+
+    <p style="color:#475569;font-size:14.5px;line-height:2;margin-bottom:2rem">地域コミュニティが主催するイベントへ能動的に参加し、地域社会への帰属意識（プレイス・アタッチメント）を高め、生活に新たなダイナミズムを生み出す。2026年2〜3月には極めて多岐にわたるプログラムが展開されている。</p>
+
+    <!-- FOOD & CULTURE -->
+    <div class="event-category">
+      <div class="event-category-header cat-food">🍶 食文化と地域の歴史的探求</div>
+      <div class="event-list">
+        <div class="event-item">
+          <div class="event-date">〜3月9日</div>
+          <div class="event-info">
+            <h4>ほろよい散歩クーポン</h4>
+            <div class="event-place">📍 東広島市西条本町（西条酒蔵通り）</div>
+            <div class="event-desc">酒蔵通り沿いの店舗や酒蔵で利用可能な限定クーポン企画。地域の根幹産業である酒造文化の味覚の再発見。</div>
+            <span class="event-tag tag-gourmet">グルメ</span><span class="event-tag tag-culture">文化</span>
+          </div>
+        </div>
+        <div class="event-item">
+          <div class="event-date">〜3月29日</div>
+          <div class="event-info">
+            <h4>「SAKEKASU バーガー」コラボ特別メニュー</h4>
+            <div class="event-place">📍 東広島芸術文化ホールくらら（KURARA Cafe ソラオト）</div>
+            <div class="event-desc">特別展「ポップ・アート 時代を変えた4人」に関連。1960年代アメリカをテーマにした酒粕バンズ使用のバーガー。</div>
+            <span class="event-tag tag-gourmet">グルメ</span><span class="event-tag tag-art">アート</span>
+          </div>
+        </div>
+        <div class="event-item">
+          <div class="event-date">2月14日・21日</div>
+          <div class="event-info">
+            <h4>西條鶴「神髄」もろみ見学ツアー</h4>
+            <div class="event-place">📍 東広島市内</div>
+            <div class="event-desc">純米大吟醸原酒「神髄」のもろみを見学し、限定酒を入手できる特別ツアー。杜氏の手造り技術の現場視察。</div>
+            <span class="event-tag tag-culture">文化</span><span class="event-tag tag-gourmet">体験</span>
+          </div>
+        </div>
+        <div class="event-item">
+          <div class="event-date">2月19日・3月19日</div>
+          <div class="event-info">
+            <h4>食育の日限定商品販売</h4>
+            <div class="event-place">📍 東広島市役所本館（ビストロパパ・あおぞらカフェ）</div>
+            <div class="event-desc">月に一度、野菜を多めに使用した限定ランチやパン・サラダの販売。健康と食生活のバランスを見直す機会。</div>
+            <span class="event-tag tag-gourmet">グルメ</span><span class="event-tag tag-nature">健康</span>
+          </div>
+        </div>
+        <div class="event-item">
+          <div class="event-date">2月27日</div>
+          <div class="event-info">
+            <h4>おひな祭りと白市紅茶のティータイム（バスツアー）</h4>
+            <div class="event-place">📍 仙石庭園、旧木原家住宅など（広島駅発着）</div>
+            <div class="event-desc">歴史薫る白市の町家でのひな祭り鑑賞と白市紅茶を楽しむ日帰りツアー。建築・歴史的景観の鑑賞。</div>
+            <span class="event-tag tag-culture">文化</span><span class="event-tag tag-gourmet">グルメ</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GROWTH -->
+    <div class="event-category">
+      <div class="event-category-header cat-growth">📚 自己成長と地域社会との接点構築</div>
+      <div class="event-list">
+        <div class="event-item">
+          <div class="event-date">2月1日〜3月31日</div>
+          <div class="event-info">
+            <h4>LINEで巡る「ヒガシル」デジタルスタンプラリー</h4>
+            <div class="event-place">📍 東広島市内各所</div>
+            <div class="event-desc">市内のおすすめスポットを巡り、特産品が当たる無料の回遊型ラリー。ゲーム性を伴う市内広域の探索。</div>
+            <span class="event-tag tag-free">無料</span><span class="event-tag tag-nature">探索</span>
+          </div>
+        </div>
+        <div class="event-item">
+          <div class="event-date">2月18日</div>
+          <div class="event-info">
+            <h4>ミライノ⁺ スキルアップ講座</h4>
+            <div class="event-place">📍 東広島イノベーションラボ ミライノ⁺</div>
+            <div class="event-desc">「本能に刺さる広報コミュニケーションと気を付けたい落とし穴」を学ぶ無料講座。広報的思考による情報の「伝え方」の再構築。</div>
+            <span class="event-tag tag-learning">学び</span><span class="event-tag tag-free">無料</span>
+          </div>
+        </div>
+        <div class="event-item">
+          <div class="event-date">2月21日</div>
+          <div class="event-info">
+            <h4>アフガニスタンにようこそ！私のふるさと紹介します</h4>
+            <div class="event-place">📍 御薗宇地域センター</div>
+            <div class="event-desc">お茶とお菓子を楽しみながら、マリアムさんからアフガニスタンの文化を学ぶ無料イベント。異文化への理解深化と視野の拡大。</div>
+            <span class="event-tag tag-intl">国際交流</span><span class="event-tag tag-free">無料</span>
+          </div>
+        </div>
+        <div class="event-item">
+          <div class="event-date">〜3月31日</div>
+          <div class="event-info">
+            <h4>東広島市熟年マイスター教育講座</h4>
+            <div class="event-place">📍 広島国際大学 等</div>
+            <div class="event-desc">「人生100年時代」に向けたスポーツウェルネス専攻などの生涯学習講座。新たな知識の習得と仲間づくり。</div>
+            <span class="event-tag tag-learning">学び</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ART -->
+    <div class="event-category">
+      <div class="event-category-header cat-art">🎭 芸術・エンターテインメント</div>
+      <div class="event-list">
+        <div class="event-item">
+          <div class="event-date">2月22日〜23日</div>
+          <div class="event-info">
+            <h4>第43回東広島市芸術祭</h4>
+            <div class="event-place">📍 東広島芸術文化ホールくらら</div>
+            <div class="event-desc">茶道、大正琴、合唱、フラダンス、吟剣詩舞など市内文化団体の成果発表会。市民の文化的エネルギーを体感。</div>
+            <span class="event-tag tag-art">芸術</span><span class="event-tag tag-free">無料</span>
+          </div>
+        </div>
+        <div class="event-item">
+          <div class="event-date">3月14日・15日</div>
+          <div class="event-info">
+            <h4>サイエンスショー「風船の実験ショー」</h4>
+            <div class="event-place">📍 ヌマジ交通ミュージアム</div>
+            <div class="event-desc">風船の不思議を体感する科学実験ショー。知的好奇心の刺激と驚きの体験。</div>
+            <span class="event-tag tag-learning">教育</span>
+          </div>
+        </div>
+        <div class="event-item">
+          <div class="event-date">3月20日</div>
+          <div class="event-info">
+            <h4>清盛神社祭</h4>
+            <div class="event-place">📍 廿日市市（清盛神社）</div>
+            <div class="event-desc">平清盛の遺徳をしのぶ伝統的な祭典。瀬戸内海地域の歴史的文脈の再確認と精神的リセット。</div>
+            <span class="event-tag tag-culture">伝統</span>
+          </div>
+        </div>
+        <div class="event-item">
+          <div class="event-date">3月22日</div>
+          <div class="event-info">
+            <h4>2026東広島市歌謡フェスティバル</h4>
+            <div class="event-place">📍 東広島芸術文化ホールくらら（小ホール）</div>
+            <div class="event-desc">46年目を迎える歴史ある音楽祭。世代を超えた音楽を通じた一体感の醸成。</div>
+            <span class="event-tag tag-art">音楽</span><span class="event-tag tag-free">無料</span>
+          </div>
+        </div>
+        <div class="event-item">
+          <div class="event-date">3月29日</div>
+          <div class="event-info">
+            <h4>神楽鑑賞会 in 東広島</h4>
+            <div class="event-place">📍 東広島芸術文化ホールくらら</div>
+            <div class="event-desc">「ひろしま神楽グランプリ」13回連続優勝の横田神楽団による公演。圧倒的な迫力の郷土芸能。</div>
+            <span class="event-tag tag-culture">伝統芸能</span><span class="event-tag tag-art">パフォーマンス</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CONCLUSION ═══ -->
+  <section id="conclusion" class="conclusion">
+    <h2>持続可能な「日常という名の旅」へ</h2>
+    <p>旅行の真の価値は、非日常で得た刺激そのものだけでなく、帰還後の「日常」をいかに変容させるかという点に宿っている。</p>
+
+    <div class="conclusion-steps">
+      <div class="conclusion-step">
+        <div class="step-num">STEP 01</div>
+        <h4>身体の最適化</h4>
+        <p>温泉・サウナ・エステで自律神経の乱れと筋疲労をリセット。旅行前よりも良い状態へ。</p>
+      </div>
+      <div class="conclusion-step">
+        <div class="step-num">STEP 02</div>
+        <h4>記憶の空間統合</h4>
+        <p>フォトフレーム、アップサイクル、アレンジレシピで日常にポジティブ・アンカーを形成。</p>
+      </div>
+      <div class="conclusion-step">
+        <div class="step-num">STEP 03</div>
+        <h4>街の再発見</h4>
+        <p>カフェ、庭園、寺院、そしてコミュニティイベントで見慣れた街の解像度を劇的に引き上げる。</p>
+      </div>
+    </div>
+
+    <p style="margin-top:1rem">旅行は、荷物を解いた瞬間に終わるものではない。持ち帰った感覚の変化と広がった視野を基盤に、ライフスタイルと環境を継続的に再編集し続けること — それこそが、広島での日常を最大限に楽しむための核心である。<strong style="color:#fff">日々の生活そのものが、豊かで創造的な「継続する旅」となる。</strong></p>
+  </section>
+
+  <!-- ─── REFERENCES ─── -->
+  <div class="references">
+    <h3>引用文献</h3>
+    <div class="ref-list">
+      <p>[1] <a href="https://www.asoview.com/leisure/grp5/location/prf340000/">広島県の温泉・スパ — アソビュー！</a></p>
+      <p>[2] <a href="https://www.honoyu.jp/rakurakuen/">塩屋天然温泉ほの湯楽々園</a></p>
+      <p>[3] <a href="https://shion.hotel-areaone.com/spa-service.html">温泉Spa 獅温 — ホテルエリアワン広島ウイング</a></p>
+      <p>[4] <a href="https://www.yamada-denkiweb.com/media/41962/">デジタルフォトフレームおすすめ5選 — ヤマダウェブコム</a></p>
+      <p>[5] <a href="https://www.ozmall.co.jp/gourmet/article/35294/">クッキー缶利用法アイデア — OZmall</a></p>
+      <p>[6] <a href="https://www.gyoren.or.jp/cooking/recipe/533.html">秋鮭とじゃがいものバターしょうゆ炒め — おすすめレシピ365</a></p>
+      <p>[7] <a href="https://www.kamada.co.jp/recipe/list/3965">鮭とじゃがいものバター醤油照焼 — 鎌田醤油</a></p>
+      <p>[8] <a href="https://tabelog.com/hiroshima/A3401/A340102/rstLst/cond08-01-00/SC1001/">宇品おすすめカフェ — 食べログ</a></p>
+      <p>[9] <a href="https://www.lemon8-app.com/@ume_gourmet/7080445111577887237">広島の穴場カフェ3選 — Lemon8</a></p>
+      <p>[10] <a href="https://www.ueda-soukoryu.com/ume-2025/">縮景園梅見茶会 — 上田流和風堂</a></p>
+      <p>[11] <a href="https://shukkeien.jp/event/">年間行事 — 縮景園</a></p>
+      <p>[12] <a href="https://dive-hiroshima.com/explore/3320/">三瀧寺 — Dive! Hiroshima</a></p>
+      <p>[13] <a href="https://higashihiroshima-kinsai.site/events/01JQ2Z4V6Z10EXN6XVQZHMGDYV">セントルマルシェ — 東広島市イベント情報</a></p>
+      <p>[14] <a href="https://www.walkerplus.com/event_list/03/ar0834/eg0055/">広島県のお祭り — ウォーカープラス</a></p>
+    </div>
+  </div>
+
+</main>
+
+<footer class="footer">
+  <p>帰還のロードマップ — 北海道から広島へ ✈️ Wellness Roadmap 2026</p>
+</footer>
+
+</body>
+</html>
